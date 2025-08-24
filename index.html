@@ -1,772 +1,526 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
-
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Your Name | Research Portfolio</title>
-
+    <title>Divya Pradhan | Research Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <style>
         /* CSS is embedded here for simplicity */
-
         :root {
-
             --primary-color: #2c3e50;
-
             /* Dark Blue/Charcoal */
-
             --secondary-color: #3498db;
-
             /* Bright Blue */
-
             --background-color: #ecf0f1;
-
             /* Light Grey */
-
             --card-bg-color: #ffffff;
-
             --text-color: #34495e;
-
             --header-font-weight: 600;
-
         }
-
-
 
         * {
-
             margin: 0;
-
             padding: 0;
-
             box-sizing: border-box;
-
             scroll-behavior: smooth;
-
         }
-
-
 
         body {
-
             font-family: 'Poppins', sans-serif;
-
             background-color: var(--background-color);
-
             color: var(--text-color);
-
             line-height: 1.6;
-
         }
-
-
 
         .container {
-
             max-width: 1100px;
-
             margin: 0 auto;
-
             padding: 0 2rem;
-
         }
-
-
 
         header {
-
             background: var(--card-bg-color);
-
             padding: 1rem 0;
-
             position: sticky;
-
             top: 0;
-
             z-index: 1000;
-
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-
         }
-
-
 
         header .container {
-
             display: flex;
-
             justify-content: space-between;
-
             align-items: center;
-
         }
-
-
 
         header h1 {
-
             font-size: 1.5rem;
-
             color: var(--primary-color);
-
         }
-
-
 
         header nav ul {
-
             display: flex;
-
             list-style: none;
-
         }
-
-
 
         header nav ul li {
-
             margin-left: 2rem;
-
         }
-
-
 
         header nav ul li a {
-
             text-decoration: none;
-
             color: var(--primary-color);
-
             font-weight: var(--header-font-weight);
-
             transition: color 0.3s ease;
-
         }
-
-
 
         header nav ul li a:hover {
-
             color: var(--secondary-color);
-
         }
-
-
 
         .hero {
-
             background: var(--primary-color);
-
             color: #fff;
-
             padding: 5rem 0;
-
             text-align: center;
-
         }
-
-
 
         .hero h2 {
-
             font-size: 3rem;
-
             margin-bottom: 0.5rem;
-
         }
-
-
 
         .hero p {
-
             font-size: 1.2rem;
-
             color: var(--secondary-color);
-
         }
-
-
 
         section {
-
             padding: 4rem 0;
-
             opacity: 0;
-
             /* For JS fade-in */
-
             transform: translateY(20px);
-
             /* For JS fade-in */
-
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-
         }
-
-
 
         section.visible {
-
             opacity: 1;
-
             transform: translateY(0);
-
         }
-
-
 
         .section-title {
-
             text-align: center;
-
             font-size: 2.5rem;
-
             margin-bottom: 3rem;
-
             color: var(--primary-color);
-
         }
 
+        /* NEW STYLES FOR PROFILE PICTURE */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
 
+        .profile-pic-container {
+            flex-shrink: 0;
+        }
+
+        .profile-pic {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--secondary-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-text {
+            text-align: left;
+            font-size: 1.05rem;
+        }
 
         .card-grid {
-
             display: grid;
-
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-
             gap: 2rem;
-
         }
-
-
 
         .card {
-
             background: var(--card-bg-color);
-
             padding: 2rem;
-
             border-radius: 8px;
-
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-
+            display: flex;
+            flex-direction: column;
         }
-
-
 
         .card:hover {
-
             transform: translateY(-5px);
-
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-
         }
-
-
 
         .card h3 {
-
             color: var(--secondary-color);
-
             margin-bottom: 1rem;
-
         }
-
-
-
-        #about p {
-
-            max-width: 800px;
-
-            margin: 0 auto;
-
-            text-align: center;
-
-            font-size: 1.1rem;
-
-        }
-
-
 
         #skills ul {
-
             list-style: none;
-
         }
-
-
 
         #skills li {
-
             background: #eaf5ff;
-
             color: var(--primary-color);
-
             padding: 0.5rem 1rem;
-
             margin-bottom: 0.5rem;
-
             border-radius: 5px;
-
             font-weight: 500;
-
         }
-
-
 
         .timeline-item {
-
             margin-bottom: 2rem;
-
         }
-
-
 
         .timeline-item h4 {
-
             font-size: 1.2rem;
-
         }
-
-
 
         .timeline-item p.role {
-
             font-style: italic;
-
             color: #555;
-
             margin-bottom: 0.5rem;
-
         }
-
-
 
         .certificate-link {
-
             display: block;
-
             background: var(--secondary-color);
-
             color: #fff;
-
             padding: 1rem;
-
             text-align: center;
-
             text-decoration: none;
-
             border-radius: 5px;
-
             font-weight: 600;
-
             transition: background-color 0.3s ease;
-
+            margin-top: auto;
+            /* Pushes button to the bottom of the card */
         }
-
-
 
         .certificate-link:hover {
-
             background: #2980b9;
-
         }
 
+        /* NEW STYLES FOR CAROUSEL */
+        .swiper {
+            width: 100%;
+            padding-top: 20px;
+            padding-bottom: 50px;
+            /* Space for pagination */
+        }
 
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 320px;
+            /* Width of each card */
+        }
+
+        .swiper-slide .card {
+            height: 100%;
+            /* Make cards in carousel equal height */
+        }
+
+        /* --- ADD THIS --- */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: var(--secondary-color);
+        }
+
+        /* --- END ADDITION --- */
 
         footer {
-
             background: var(--primary-color);
-
             color: #fff;
-
             text-align: center;
-
             padding: 2rem 0;
-
         }
-
-
 
         footer a {
-
             color: var(--secondary-color);
-
             text-decoration: none;
-
         }
-
-
 
         /* Responsive Design */
-
         @media (max-width: 768px) {
-
             header h1 {
-
                 font-size: 1.2rem;
-
             }
-
-
 
             header nav ul {
-
                 display: none;
-
-                /* Simple hiding for mobile, a hamburger menu would be more advanced */
-
             }
-
-
 
             .hero h2 {
-
                 font-size: 2.2rem;
-
             }
 
+            /* Adjust about section for mobile */
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-text {
+                text-align: center;
+            }
         }
     </style>
-
 </head>
-
-
 
 <body>
 
-
-
     <header>
-
         <div class="container">
-
             <h1>Divya Pradhan</h1>
-
             <nav>
-
                 <ul>
-
                     <li><a href="#about">About</a></li>
-
                     <li><a href="#skills">Skills</a></li>
-
                     <li><a href="#experience">Experience</a></li>
-
                     <li><a href="#certifications">Certifications</a></li>
-
                     <li><a href="#contact">Contact</a></li>
-
                 </ul>
-
             </nav>
-
         </div>
-
     </header>
 
-
-
     <main>
-
         <section class="hero">
-
             <div class="container">
-
                 <h2>Divya Pradhan</h2>
-
-                <p>Gold Medalist (Life Sciences & Bioinformatics) | Research Enthusiast</p>
-
+                <p>M.Sc. Gold Medalist | Bioinformatics & Life Sciences | Research Enthusiast</p>
             </div>
-
         </section>
-
-
 
         <section id="about" class="container">
-
             <h2 class="section-title">About Me</h2>
-
-            <p>
-
-                A highly motivated Gold Medalist (2022-24) in Life Sciences & Bioinformatics from Assam University,
-
-                Silchar. My expertise lies at the intersection of molecular biology, toxicology, and computational drug
-
-                discovery. I have hands-on experience in zebrafish handling, a range of toxicology assays, and core
-
-                molecular biology techniques. As a former Project Assistant at ICFRE, I contributed to a vital
-
-                environmental bioreclamation project. I am passionate about leveraging my skills in bioinformatics and
-
-                data analysis to drive innovation in biotechnology and create impactful solutions in drug discovery.
-
-            </p>
-
+            <div class="about-content">
+                <div class="profile-pic-container">
+                    <img src="images/profile.jpg" alt="Divya Pradhan" class="profile-pic">
+                </div>
+                <div class="about-text">
+                    <p>
+                        A highly motivated M.Sc. Gold Medalist in Life Sciences & Bioinformatics from Assam
+                        University, Silchar. My expertise lies at the intersection of molecular
+                        biology, toxicology, and computational drug discovery. I have hands-on experience in zebrafish
+                        handling, a range of toxicology assays, and core molecular biology techniques. As a
+                        former Project Assistant at ICFRE, I contributed to a vital environmental bioreclamation
+                        project. I am passionate about leveraging my skills in bioinformatics and data
+                        analysis to drive innovation in biotechnology and create impactful solutions in drug discovery.
+                    </p>
+                </div>
+            </div>
         </section>
-
-
 
         <section id="skills" class="container">
-
             <h2 class="section-title">Skills & Expertise</h2>
-
             <div class="card-grid">
-
                 <div class="card">
-
                     <h3>Laboratory Techniques</h3>
-
                     <ul>
-
                         <li>Zebrafish Handling & Husbandry</li>
-
                         <li>Genotoxicity & Hepatotoxicity Assays</li>
-
                         <li>Micronucleus Assay</li>
-
                         <li>Polymerase Chain Reaction (PCR)</li>
-
                         <li>Agarose Gel Electrophoresis</li>
-
                     </ul>
-
                 </div>
-
                 <div class="card">
-
                     <h3>Bioinformatics & Computational</h3>
-
                     <ul>
-
                         <li>Molecular Docking (AutoDock, PyMOL)</li>
-
-                        <li>Computational Drug Design</li>
-
-                        <li>Drug Screening & Virtual Screening</li>
-
+                        <li>Drug Designing & Screening </li>
                         <li>Sequence Analysis (BLAST)</li>
-
-                        <li>Molecular Dynamics Simulation (Gromacs)</li>
-
+                        <li>Cancer Biology Fundamentals</li>
+                        <li>DBMS and Programming Fundamentals</li>
                     </ul>
-
                 </div>
-
                 <div class="card">
-
                     <h3>Core Competencies</h3>
-
                     <ul>
-
-                        <li>Data Analysis (SPSS)</li>
-
+                        <li>Data Analysis & Biostatistics</li>
                         <li>Scientific Writing & Publishing</li>
-
                         <li>Research Documentation</li>
-
                         <li>Project Management</li>
-
-                        <li>Problem Solving & Critical Thinking</li>
-
+                        <li>Natural Resource Management </li>
                     </ul>
-
                 </div>
-
             </div>
-
         </section>
-
-
 
         <section id="experience" class="container">
-
             <h2 class="section-title">Research Experience</h2>
-
             <div class="card">
-
                 <div class="timeline-item">
-
                     <h3>Project Assistant</h3>
-
-                    <p class="role">ICFRE, Jorhat, Assam, India</p>
-
-                    <p>Contributed to a significant bioreclamation project focused on environmental restoration. My
-
-                        responsibilities included sample analysis, data collection, and assisting in the preparation of
-
-                        project reports and documentation.</p>
-
+                    <p class="role">ICFRE-Rain Forest Research Institute, Jorhat (Oct 2024 - Jan 2025)</p>
+                    <p>Contributed to the project "Tree enumeration at the plantation sites/bio-reclamation
+                        sites of Tirap OCP of North Eastern Coalfields, CIL, Margherita, Assam".
+                        Responsibilities included data collection, sample analysis, and assisting in report preparation.
+                    </p>
                 </div>
-
                 <div class="timeline-item">
-
                     <h3>M.Sc. Dissertation Project</h3>
-
-                    <p class="role">Assam University, Silchar</p>
-
-                    <p>Investigated the genotoxic effects of novel compounds on zebrafish models. Employed molecular
-
-                        docking to predict interactions and validated findings using micronucleus assays and PCR-based
-
-                        techniques. My research culminated in a Gold Medal for academic excellence.</p>
-
+                    <p class="role">Assam University, Silchar (2022 - 2024)</p>
+                    <p>My postgraduate research focused on Life Science and Bioinformatics, culminating in
+                        receiving the Merit Certificate for securing the highest marks and being awarded the Gold Medal.
+                    </p>
                 </div>
-
             </div>
-
         </section>
-
-
 
         <section id="certifications" class="container">
-
             <h2 class="section-title">Certifications & Achievements</h2>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
 
-            <div class="card-grid">
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <h3>M.Sc. Merit Certificate</h3>
+                            <p>Awarded for securing the highest marks in the Master of Science final
+                                examination. </p>
+                            <a href="certificates/MSc_Merit_Card.pdf" target="_blank" class="certificate-link">View
+                                Certificate</a>
+                        </div>
+                    </div>
 
-                <div class="card">
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <h3>Computational Drug Designing</h3>
+                            <p>Completed a 5-day workshop on "Computational Approaches in Drug Designing:
+                                2.0".</p>
+                            <a href="certificates/All_Workshop_Certificates.pdf#page=2" target="_blank"
+                                class="certificate-link">View Certificate</a>
+                        </div>
+                    </div>
 
-                    <h3>Gold Medal - M.Sc. Life Sciences</h3>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <h3>Cancer Biology Workshop</h3>
+                            <p>Completed a 2-day offline workshop at IIT Guwahati, organized by Ethical
+                                Edufabrica. </p>
+                            <a href="certificates/All_Workshop_Certificates.pdf#page=1" target="_blank"
+                                class="certificate-link">View Certificate</a>
+                        </div>
+                    </div>
 
-                    <p>Awarded for securing the first position in the 2022-24 batch.</p>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <h3>PG Diploma in Bioinformatics</h3>
+                            <p>Qualified with a First Class in the Post Graduate Diploma in Bio-Informatics
+                                program. </p>
+                            <a href="certificates/Diploma.pdf" target="_blank" class="certificate-link">View
+                                Certificate</a>
+                        </div>
+                    </div>
 
-                    <br>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <h3>B.Sc. in Zoology (Honours)</h3>
+                            <p>Qualified for the Degree of Bachelor of Science in Zoology with Honours,
+                                securing an 'O' Grade.</p>
+                            <a href="certificates/BSC_final_grade.pdf" target="_blank" class="certificate-link">View
+                                Certificate</a>
+                        </div>
+                    </div>
 
-                    <a href="certificates/MSc_Gold_Medal.pdf" target="_blank" class="certificate-link">View
-
-                        Certificate</a>
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <h3>Recent Trends in Life Sciences</h3>
+                            <p>Participated in the one-day symposium organized by the Dept. of Life Science
+                                and Bioinformatics. </p>
+                            <a href="certificates/All_Workshop_Certificates.pdf#page=3" target="_blank"
+                                class="certificate-link">View Certificate</a>
+                        </div>
+                    </div>
 
                 </div>
+                <div class="swiper-pagination"></div>
 
-                <div class="card">
-
-                    <h3>Workshop on Bioinformatics Tools</h3>
-
-                    <p>Completed an intensive workshop on modern bioinformatics tools and techniques.</p>
-
-                    <br>
-
-                    <a href="certificates/Bioinformatics_Workshop_Cert.pdf" target="_blank"
-                        class="certificate-link">View Certificate</a>
-
-                </div>
-
-                <div class="card">
-
-                    <h3>Certificate in Scientific Writing</h3>
-
-                    <p>A comprehensive course on effective scientific communication and manuscript preparation.</p>
-
-                    <br>
-
-                    <a href="certificates/Scientific_Writing_Cert.pdf" target="_blank" class="certificate-link">View
-
-                        Certificate</a>
-
-                </div>
-
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
-
         </section>
-
     </main>
 
-
-
     <footer id="contact">
-
         <div class="container">
-
             <h2>Get In Touch</h2>
-
             <p>I'm always open to discussing new research projects and collaboration opportunities.</p>
-
             <p>
-
                 <a href="mailto:divya.pradhan.1122@gmail.com">divya.pradhan.1122@gmail.com</a> |
-
                 <a href="https://www.linkedin.com/in/divya-pradhan-b3b4131b7/" target="_blank">LinkedIn</a> |
-
                 <a href="https://github.com/DockingNDiscovery" target="_blank">GitHub</a>
-
             </p>
-
         </div>
-
     </footer>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <script>
-
-        // JavaScript is embedded here for simplicity
-
+        // --- Fade-in Animation on Scroll ---
         document.addEventListener('DOMContentLoaded', function () {
-
             const sections = document.querySelectorAll('section');
-
-
-
-            const options = {
-
-                root: null, // it is the viewport
-
-                threshold: 0.1,
-
-                rootMargin: "0px"
-
-            };
-
-
-
-            const observer = new IntersectionObserver(function (entries, observer) {
-
+            const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-
-                    if (!entry.isIntersecting) {
-
-                        return;
-
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
                     }
-
-                    entry.target.classList.add('visible');
-
-                    observer.unobserve(entry.target);
-
                 });
-
-            }, options);
-
-
-
+            }, { threshold: 0.1 });
             sections.forEach(section => {
-
                 observer.observe(section);
-
             });
-
         });
 
+        // --- SwiperJS Carousel Initialization (MODIFIED) ---
+        var swiper = new Swiper(".mySwiper", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            loop: true,
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+            },
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
     </script>
 
-
-
 </body>
-
-
 
 </html>
